@@ -1,7 +1,3 @@
-# entry_task_zke
-
-Entry Task at Shopee (back-end) by **Keer Zhang** (keer.zhang@shopee.com)
-
 ## Requirements
 
 ### Framework
