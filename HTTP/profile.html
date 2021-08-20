@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Profile</title>
+  </head>
+
+  <body>
+    <h1>My Profile</h1>
+
+    {{if .Success}}
+    <form
+      id="update"
+      action="/update/"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <h2>Basic Infomation</h2>
+      <p>
+        <label for="username"><b>Username</b>: </label>
+        <input
+          type="hidden"
+          id="username"
+          value="{{.Username}}"
+          name="username"
+        />{{.Username}}
+      </p>
+      <p><b>Nickname</b>: {{.Nickname}}</p>
+
+      <h2>Change Nickname</h2>
+      <p>
+        <label for="nickname"><b>New nickname</b>:</label>
+        <input type="text" value="{{printf "%s" .Nickname}}" name="nickname" />
+        <input type="submit" value="Upload" />
+        <br />*: Please input in 5-50 characters
+      </p>
+
+      <h2>Upload Avatar</h2>
+      <input
+        type="hidden"
+        id="profile"
+        name="profile_old"
+        value="{{.Profile}}"
+      />
+      <div>
+        <div>
+          <img id="image" src="{{printf "/img/%v" .Profile}}" alt="avatar"
+          width="100" height="100" />
+        </div>
+        <div>
+          <input
+            type="file"
+            accept="image/gif, image/jpeg, image/jpeg, image/png"
+            name="profile"
+            value="{{.Profile}}"
+            id="input"
+            onchange="changeImg()"
+          />
+        </div>
+        <div>
+          <input type="submit" value="Upload" />
+          <br />*: Please upload the format of gif, jpg, jpeg, and png.
+        </div>
+      </div>
+    </form>
+
+    {{else}}
+    <div>Login Fails: {{.Reason}}</div>
+    {{end}}
+  </body>
+
+  <script>
+    function changeImg() {
+      let img = new Image();
+      img.onload = function () {
+        document.getElementById("image").src = this.src;
+      };
+      img.src = (window.URL || window.webkitURL).createObjectURL(
+        input.files[0]
+      );
+    }
+  </script>
+</html>
