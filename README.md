@@ -45,5 +45,5 @@ Considering the consistency issue regarding updating the data, I delete the cach
 - Redis: http://redis.io
 - Redis Client: https://github.com/go-redis/redis
 
--- go run main.go &
-wrk -t4 -c800 -s ./test/mulTest.lua -d10s http://127.0.0.1:5500/
+` go run main.go &
+wrk -t4 -c800 -s ./test/mulTest.lua -d10s http://127.0.0.1:5500/`
